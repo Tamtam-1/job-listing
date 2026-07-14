@@ -10,6 +10,8 @@ export default function SearchFilterBar({
   onLocationChange,
   budgetIndex,
   onBudgetChange,
+  sortBy,
+  onSortChange,
 }) {
   return (
     <div className="filter-bar">
@@ -49,6 +51,12 @@ export default function SearchFilterBar({
               {b.label}
             </option>
           ))}
+        </select>
+
+        <select value={sortBy} onChange={(e) => onSortChange(e.target.value)}>
+          <option value="newest">Sort: Newest</option>
+          <option value="budget-desc">Sort: Budget (High to Low)</option>
+          <option value="budget-asc">Sort: Budget (Low to High)</option>
         </select>
       </div>
     </div>
