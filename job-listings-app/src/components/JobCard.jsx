@@ -1,8 +1,22 @@
 import { MapPin, Clock, Users } from "lucide-react";
 
-export default function JobCard({ job }) {
+export default function JobCard({ job, onClick }) {
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      onClick();
+    }
+  };
+
   return (
-    <article className="job-card">
+    <article
+      className="job-card"
+      onClick={onClick}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+      role="button"
+      aria-label={`View details for ${job.title} at ${job.employer}`}
+    >
       <div className="ticket-row">
         <span className="job-code">{job.id}</span>
         <span className="category-chip">{job.category}</span>
@@ -37,7 +51,16 @@ export default function JobCard({ job }) {
             <Users size={13} /> {job.proposals} proposals
           </span>
         </div>
-        <button className="btn-apply">Apply</button>
+        <button
+          className="btn-apply"
+          onClick={(e) => {
+            e.stopPropagation();
+            onClick();
+          }}
+          tabIndex={-1}
+        >
+          Apply
+        </button>
       </div>
     </article>
   );

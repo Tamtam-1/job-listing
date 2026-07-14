@@ -298,3 +298,411 @@ select:focus {
   .desktop-only { display: none; }
   .mobile-only { display: flex; }
 }
+
+/* ---------- MODAL ---------- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(8, 11, 20, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 20px;
+  animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-content {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 860px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  animation: scaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: var(--bg);
+  border: 1px solid var(--panel-border);
+  color: var(--muted);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  outline: none;
+}
+.modal-close-btn:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+.modal-close-btn:focus-visible {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(255, 176, 32, 0.2);
+}
+
+/* Header inside modal */
+.modal-header-section {
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--panel-border);
+  padding-bottom: 20px;
+  padding-right: 40px; /* space for close button */
+}
+.modal-job-id {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--accent);
+  display: inline-block;
+  margin-bottom: 6px;
+}
+.modal-title-text {
+  font-size: 26px;
+  margin: 0 0 8px;
+  line-height: 1.25;
+}
+.modal-employer-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 14px;
+}
+.modal-employer-name {
+  font-weight: 600;
+  color: var(--text);
+}
+.modal-rating-badge {
+  background: rgba(255, 176, 32, 0.1);
+  color: var(--accent);
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 12.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.modal-employer-info {
+  color: var(--muted);
+}
+
+/* Two columns grid layout */
+.modal-grid-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+}
+
+@media (min-width: 768px) {
+  .modal-grid-layout {
+    grid-template-columns: 1fr 1.2fr;
+  }
+}
+
+/* Left side: Job details cards */
+.modal-details-side {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.detail-card {
+  background: var(--bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  padding: 16px 20px;
+}
+.detail-card h4 {
+  margin: 0 0 12px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+.detail-meta-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.detail-meta-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.detail-icon {
+  color: var(--accent);
+  margin-top: 2px;
+}
+.detail-label {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.detail-value {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+}
+.deadline-highlight {
+  color: #ff5252;
+}
+.detail-budget-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text);
+}
+.modal-skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* Right side: Proposal form */
+.modal-form-side h3 {
+  margin: 0 0 16px;
+  font-size: 18px;
+}
+.form-group {
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+}
+.field-label {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.required-star {
+  color: #ff5252;
+}
+.optional-tag {
+  font-size: 11.5px;
+  color: var(--muted);
+  font-weight: 400;
+}
+.label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.char-counter {
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+/* Inputs & textarea styles */
+.form-input {
+  background: var(--bg);
+  border: 1px solid var(--panel-border);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.15s ease;
+  width: 100%;
+}
+.form-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(255, 176, 32, 0.15);
+}
+.form-textarea {
+  resize: vertical;
+  line-height: 1.5;
+  min-height: 120px;
+}
+.input-error {
+  border-color: #ff5252 !important;
+}
+.input-error:focus {
+  box-shadow: 0 0 0 2px rgba(255, 82, 82, 0.15) !important;
+}
+
+/* Input groups with prefixes */
+.input-with-prefix {
+  display: flex;
+  align-items: stretch;
+  background: var(--bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.15s ease;
+}
+.input-with-prefix:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(255, 176, 32, 0.15);
+}
+.input-prefix {
+  background: var(--panel);
+  border-right: 1px solid var(--panel-border);
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  font-size: 13.5px;
+  color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+}
+.input-with-prefix .form-input {
+  border: none;
+  border-radius: 0;
+}
+.input-with-prefix .form-input:focus {
+  box-shadow: none;
+}
+
+/* Error feedback message */
+.inline-error-message {
+  font-size: 12.5px;
+  color: #ff5252;
+  margin-top: 6px;
+  font-weight: 500;
+  display: block;
+}
+
+/* Proposal submit button */
+.btn-submit-proposal {
+  background: var(--accent);
+  color: #0F1420;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 20px;
+  font-weight: 700;
+  font-size: 14.5px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 8px;
+  transition: all 0.15s ease;
+  outline: none;
+}
+.btn-submit-proposal:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+.btn-submit-proposal:active {
+  transform: translateY(0);
+}
+.btn-submit-proposal:disabled {
+  background: var(--divider);
+  color: var(--muted);
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ---------- CONFIRMATION SUCCESS STATE ---------- */
+.modal-success-state {
+  text-align: center;
+  padding: 24px 8px;
+}
+.success-icon-wrapper {
+  width: 80px;
+  height: 80px;
+  background: rgba(46, 204, 113, 0.1);
+  color: #2ecc71;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  animation: bounceIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.success-check-icon {
+  stroke-width: 1.8;
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+  70% { transform: scale(0.9); opacity: 0.9; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.modal-success-state h2 {
+  font-size: 26px;
+  margin: 0 0 10px;
+  color: var(--text);
+}
+.success-description {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.5;
+  max-width: 500px;
+  margin: 0 auto 24px;
+}
+.success-description strong {
+  color: var(--text);
+}
+
+.success-details-card {
+  background: var(--bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 440px;
+  margin: 0 auto 28px;
+  text-align: left;
+}
+.success-details-card h4 {
+  margin: 0 0 14px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  border-bottom: 1px solid var(--panel-border);
+  padding-bottom: 8px;
+}
+.success-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.success-row:last-child {
+  margin-bottom: 0;
+}
+.success-label {
+  color: var(--muted);
+}
+.success-val {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.btn-success-close {
+  width: 100%;
+  max-width: 240px;
+  padding: 12px 24px;
+  font-size: 14px;
+}
+

@@ -4,6 +4,7 @@ import SearchFilterBar from "../components/SearchFilterBar";
 import JobList from "../components/JobList";
 import LoadingSkeleton from "../components/LoadingSkeleton";
 import EmptyState from "../components/EmptyState";
+import JobDetailModal from "../components/JobDetailModal";
 import { JOBS, BUDGET_RANGES } from "../data/jobs";
 import "../styles/job-listings.css";
 
@@ -13,6 +14,7 @@ export default function JobListingsPage() {
   const [category, setCategory] = useState("All Categories");
   const [location, setLocation] = useState("All Locations");
   const [budgetIndex, setBudgetIndex] = useState(0);
+  const [selectedJob, setSelectedJob] = useState(null);
 
   useEffect(() => {
     const t = setTimeout(() => setIsLoading(false), 1500);
@@ -73,7 +75,11 @@ export default function JobListingsPage() {
       ) : filteredJobs.length === 0 ? (
         <EmptyState onReset={resetFilters} />
       ) : (
-        <JobList jobs={filteredJobs} />
+        <JobList jobs={filteredJobs} onJobClick={setSelectedJob} />
+      )}
+
+      {selectedJob && (
+        <JobDetailModal job={selectedJob} onClose={() => setSelectedJob(null)} />
       )}
     </div>
   );
