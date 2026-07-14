@@ -1,0 +1,41 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependency directories
+node_modules/
+job-listings-app/node_modules/
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Output directories
+dist/
+job-listings-app/dist/
+tmp/
+out/
+
+# IDEs and editors
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# Gemini/Antigravity Agent specific
+.gemini/
+brain/
+scratch/
+system_generated/
