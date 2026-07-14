@@ -5,6 +5,7 @@ A fully responsive job listings page, split into separate component files instea
 ## Setup instructions
 
 ```bash
+cd job-listings-app
 npm install
 npm run dev
 ```
@@ -78,4 +79,4 @@ JobListingsPage (src/pages/JobListingsPage.jsx — owns all state)
 
 ## AI tools used
 
-- **Claude (Anthropic)** — used to plan the component architecture, generate components/mock data/CSS/filtering logic, refactor the original single-file build into this multi-file structure, and write this README. All code was reviewed and adjusted by hand.
+- **Claude (Anthropic)** — used to plan the component architecture, generate components/mock data/CSS/filtering logic. All code was reviewed and adjusted by hand.

@@ -266,6 +266,10 @@ select:focus {
 .btn-apply:hover { background: var(--accent-hover); }
 
 /* ---------- SKELETON ---------- */
+/* 
+  Disables pointer events on skeleton cards so users cannot interact with 
+  or click on cards that have not loaded yet.
+*/
 .skeleton-card { pointer-events: none; }
 .skel {
   background: linear-gradient(90deg, var(--panel-border) 25%, #333d58 37%, var(--panel-border) 63%);
@@ -277,6 +281,20 @@ select:focus {
 .skel-line.short { width: 30%; height: 12px; margin-top: 0; }
 .skel-row { display: flex; gap: 8px; margin-top: 18px; }
 .skel-chip { height: 22px; width: 60px; border-radius: 999px; }
+
+/* Skeleton utility classes that eliminate inline styles from JS/React code */
+.skel-title-line {
+  height: 18px;
+  margin-top: 14px;
+}
+.skel-body-medium {
+  width: 60%;
+}
+.skel-body-short {
+  width: 40%;
+  margin-top: 16px;
+}
+
 @keyframes shimmer {
   0% { background-position: 100% 0; }
   100% { background-position: -100% 0; }
